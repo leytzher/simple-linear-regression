@@ -28,6 +28,15 @@
     ))
 
 
+(defn rmse [y pred]
+  (let [n (count y)]
+    (math/sqrt
+     (/
+      (apply + (map square (map - y pred)))
+      n))
+    ))
+
+
 (defn -main []
 
   (def dataset {:x [1 2 4 3 5]
@@ -55,6 +64,7 @@
               :max 6}}
     ))
 
+  (println "RMSE: " (rmse (:y dataset) predicted))
   )
 
 
